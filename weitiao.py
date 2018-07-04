@@ -196,37 +196,6 @@ def main():
 
 
 
-def text2vec(text):
-	number=['0','1','2','3','4','5','6','7','8','9']
-	ALPHABET=['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
-	char_set = number + ALPHABET # 如果验证码长度小于4, '_'用来补齐
-	CHAR_SET_LEN = len(char_set)
-	MAX_CAPTCHA=4
-	text_len = len(text)
-	# print(text_len,text)
-	if text_len > MAX_CAPTCHA:
-		print(text)
-		raise ValueError('验证码最长4个字符')
-	vector = np.zeros(MAX_CAPTCHA * CHAR_SET_LEN)
-
-	def char2pos(c):
-		k = ord(c) - 48
-		if k > 9:
-			k = ord(c) - 55
-			if k > 35:
-				raise ValueError('No Map')
-		return k
-
-	for i, c in enumerate(text):
-		# print text
-		idx = i * CHAR_SET_LEN + char2pos(c)
-		# print i,CHAR_SET_LEN,char2pos(c),idx
-		vector[idx] = 1
-	return vector
-
-
-
-
 
 
 
